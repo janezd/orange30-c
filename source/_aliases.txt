@@ -1,0 +1,68 @@
+PyValue
+isDC is_DC
+isDK is_DK
+isSpecial is_special
+
+Variable
+getExisting retrieve
+
+Domain
+metaid meta_id
+hasmeta has_meta
+getmeta get_meta
+getmetas get_metas
+addmeta add_meta
+addmetas add_metas
+removemeta remove_meta
+
+
+
+
+AssociationRulesInducer
+conf confidence
+supp support
+
+AssociationRulesSparseInducer
+conf confidence
+supp support
+
+SymMatrix
+getitems get_items
+
+ExampleTable
+selectref select_ref
+randomexample random_example
+random_instance random_example
+getitems get_items
+
+ContingencyClass
+add_attrclass add_var_class
+
+Example
+getweight get_weight
+setweight set_weight
+removeweight remove_weight
+getmeta get_meta
+getmetas get_metas
+hasmeta has_meta
+setvalue set_value
+setmeta set_meta
+removemeta remove_meta
+getclass get_class
+setclass set_class
+
+TransformValue
+sub_transformer subtransformer
+
+ImputerConstructor
+impute_class imputeClass
+
+Filter_random
+random_generator randomGenerator
+
+ValueFilter
+accept_special acceptSpecial
+
+FindNearest
+instances examples
+

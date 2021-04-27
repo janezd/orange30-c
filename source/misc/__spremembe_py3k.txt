@@ -1,0 +1,182 @@
+﻿NAČELO: funkcije, ki vračajo PyObject, nastavljajo PyError, funkcije, ki vračajo P-objekte ali T-objekte, mečejo exceptione.
+
+
+==Razredi==
+
+TCharBuffer je preimenovan v TByteStream
+
+
+==Pazi==
+
+* afterSet je ukinjen
+  
+* bool (nonzero) ni več definiran kar v razredu Orange. Razredi, kjer je smiseln, ga morajo definirati sami.
+
+* NAMED konstruktorji so ukinjeni; Variable in nasledniki naj sami poskrbijo za imena!
+
+cc_ in ccn_ vracajo nove reference in potrebujejo GUARD!
+
+TVariable::distributed je ukinjen (nejasen koncept, ki se ni upošteval skoraj nikjer). Niz "(distributed)" se pojavi samo v vars.cpp, v computeValue.
+
+Spremenljivk (Variable) se ne da več klicati, da bi dobil vrednost. Čisto neintuitivno, bedasto.
+
+
+
+==Dokumentacija==
+
+* Variable.firstvalue, Variable.nextvalue sta ukinjena
+* Variable.DC, Variable.DK, Variable.specialValue so obsolete; zamenja jih Variable.undefined
+
+* Orange.reference in Orange.typeid ne obstajata več, ker ima Python za to svoje mehanizme
+
+koda iz orange.hpp je premaknjena v root.hpp in errors.hpp
+koda iz c2py.hpp je premaknjena v errors.hpp in converts.hpp
+
+EnumVariable in FloatVariable sta po novem DiscreteVariable in ContinuousVariable
+
+Example
+
+Ukinjena je metoda Example.setvalue, ker je bila bedasta in je ni nihče uporabljal. Če jo je, bo popravil kodo. Pika.
+Ukinjena je metoda Example.compatible, ker je ni nihče uporabljal in je le smetila.
+
+Metoda example.native je obsolete.
+sumValue je po novem checkSum()
+
+ExampleTable
+
+Indeksiranje ExmapleTable, zaklepanje referenc.
+d.append(d[10]) ne deluje! Potrebno je x = orange.Example(d[10]); d.append(x) --- x je prost primer!
+
+ExampleTable(<filename>) zdaj sam nastavi ime. (V OWFile se lahko to ukine.)
+
+dodatna metoda sample, ki se po default vede kot selectref, ima pa tudi argument copy in če ga damo na False, naredi kopijo.
+
+select in selectref sta deprecated.
+
+Enako filter se po novem vede kot filterref, ima pa argument copz, tako kot sample
+
+dodatne možnosti selecta, ki so bile že dolgo deprecated, so zdaj ukinjene, razen možnosti izbire atributov (kot translate)
+
+selectlist, selectbool, filterlist in filterbool se ukinejo.
+
+getitems in getitemsref sta obsolete
+
+V dokumentaciji translate ne bo več, da lahko sprejme tudi seznam atributov. Uradno sprejema samo še domene.
+
+.toNumpy vrne tuple samo, ce content vsebuje /
+
+
+Classifier
+
+Classifier nima vec needs in z njim povezanih zapletenih klicev med metodami
+
+
+Distribution:
+
+atfloat, atint, addfloat, setfloat, randomint, randomfloat, highestProbIntIndex, highestProbFloatIndex in vse v tem slogu je ukinjeno, ker je zdaj TValue itak samo double.
+
+noOfElements je po novem size()
+
+sumOfValues je po novem checkSum()
+
+Classifier, ClassifierFD:
+
+TClassifier ima po novem polje domain; TClassifierFD je obsolete (#define na TClassifier)
+
+DefaultClassifier se po novem imenuje ConstantClassifier
+
+BasicAttributeStat
+
+hold_recomputation is no longer exposed to Python since it is pointless in the much slower Python loops.
+
+Call construction:
+
+Najprej sestavi osnovni razred. Med podanimi keyword argumenti pogleda, kateri so vdelani atributi osnovnega razreda in jih nastavi. Ostale keyword argumente razdeli na tiste, katerih imena so enaka imenom argumentov __call__ in ostale. Če so podani kaki non-keyword argumenti ali pa če so med keyword argumenti takšni, ki ustrezajo callu, ga pokliče; dobljenemu objektu nastavi vse preostale atribute (torej tiste, ki niso vdelani atributi osnovnega razreda in niso argumenti za call). Če se klic ne izvede, pa osnovnemu objektu nastavi preostale atribute.
+
+
+FindNearestConstructor:
+
+Če distanceConstructor ni podan, se uporabi ExamplesDistanceConstructor_Euclidean.
+
+distanceID je mogoče podati tudi ob klicu - v tem primeru povozi (a ne spremeni) vrednost atributa.
+
+
+Majority Learner:
+
+aprioryDistribution je preimenovan v priorDistribution
+
+
+ProbabilityEstimatorConstructor_Laplace je imel neke parametre. Nima jih več, zdaj je samo še običajni Laplace.
+
+CostLearner
+
+There exists something called CostLearner. It ceased to. (It gave the prediction with the smallest cost, given the class probability distribution and the misclassification costs.)
+
+TContingencyClass::constructFromGenerator became computeFromExampleTable
+
+
+ClassifierFromVar
+
+Nima več whichVar, temveč samo še variable -- aliasi na P-tipe so po novem prepovedani
+Ne dela vec z verjetnostmi, ker jih TValue ne more vec vsebovati
+
+
+ClassifierFromVarPos je ukinjen
+
+
+Diskretizacija
+
+EquiDist je postal EqualWidth
+EquiN je postal EqualFreq
+IntervalDiscretizer numberOfIntervals je postal n
+
+MeasureAttribute se po novem imenuje ScoreFeature   (preimenovati v FeatureScore?)
+
+
+SymMatrix.getValues -> SymMatrix.flat
+SymMatrix.matrixType is eliminated; served no practical purpose
+
+
+
+Filter_hasSpecial je obsolete.
+TOLE preimenovanje naj se izvede v Orange:
+- Filter_isDefined je preimenovan v Filter_no_missing (staro ime ostaja zaradi združljivosti).
+
+
+Preprocessorji so bili bistveno prezapleteni, zato se jih ni uporabljalo. Veliko jih je tudi le podvajalo funkcionalnost, ki je bila v direktnejši obliki dostopna drugje. Razlog za to je pretežno v tem, da smo jih uporabljali v času, ko je bil Orange še samostojen program in ne knjižnica za Python. Tiste predprocesorje, ki bodo manjkali, bomo raje reimplementirali v Pythonu.
+
+Preprocessor ima nov argument inplace. Upošteva ga, če je možno.
+
+Preprocessor_ ignore take select in drop ne obstajajo več, saj se to da narediti s filtri oz. domenami.
+Prav tako takeMissing in takeMissingClasses; dropMissing in dropMissing classes ostajata za convenience, vendar sta obsolete.
+
+Preprocessor_discretize ne obstaja več, saj samo podvaja funkcionalnost.
+
+Preprocessor_addNoise, Preprocessor_addMissing nimajo več polj, s katerim določamo stopnjo šuma/manjkajočih vrednosti posameznim spremenljivkam. Ima pa dodatno polje include_class. Ker je Orange združljiv z numpy, se lahko vse take posebnosti boljše naredijo prek njega.
+
+Preprocessor_addNoise ima polja proportion (za diskretne) in deviation (za zvezne; dodaja Gaussov šum). Privzeti vrednosti sta 0.
+
+Preprocessor_addGaussianNoise ne obstaja več, saj je njegovo delo prevzel Preprocessor_addNoise.
+
+TPreprocessor_addCensorWeight ne obstaja več.
+
+Predprocesorji nimajo vec metode selectionVector.
+
+Ukinjena sta AssociationLearner in AssociationClassifier; to se ne dela tako, to samo smeti in begajo
+
+Ukinjen AssociationRule.native. Cemu je to sluzilo?!?!
+
+Imputer_Default in Imputer_asValue sta združena v novi Imputer_constant
+
+LogRegLearner has been removed: it was reimplemented in Python and the C implementation was not used at all.
+
+ValueFilter in nasledniki nimajo vec position temvec variable.
+
+Added comparison operators on variables. Limitations: bitwise operators need to be used
+instead of and, or, xor; conditions 1 <= a < 3 do not work since we can't override the
+and operator.
+
+
+RemoveRedundant: razredi se ukinejo. Vecinoma gre za obsolete razrede iz dekompozicije; RemovedOneValued in RemoveUnusedValues se napiseta v Pythonu s pomocjo DistributionList.
+
+Basket format ni vec comma-separated: besede so locene samo s presledki

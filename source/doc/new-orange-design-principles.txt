@@ -1,0 +1,146 @@
+Classes in Orange and its interface to Python
+#############################################
+
+
+Class model
+===========
+
+For each Orange class, we have an auxiliary classes for interface with Python. 
+
+Core Orange classes will be referred to as T-class (and their names will start with T). These are ordinary C++ classes which can, in principle, ignore Python except for providing static methods which implement the methods which can be called from Python. In addition, they contain macros which provide information for pyprops, the program which creates the interface to Python.
+
+The other related class is derived from PyObject and contains the T-class as a field. This will be referred to as Py-class.
+
+
+Core Orange classes (T-classes)
++++++++++++++++++++++++++++++++
+
+Defining interface to Python
+----------------------------
+
+For the class to be exported to Python, it needs to be defined as ``class <MODULE>_API <classname> : public <base>''. MODULE is the name of the module in upper case, e.g. ORANGE. The class must be ultimately derived from TOrange. The name of the class must start with a T.
+
+In addition, the class definition needs to include either macro _REGISTER_ABSTRACT_CLASS(classname) or _REGISTER_CLASS(classname). Here, the class name should be without the initial T, e.g. Orange. This macro tells pyprops to include the class, and it also declares several methods related to reference handling and cloning.
+
+Fields of types short, int, long, float, double, char, bool and string are exported to Python by marking them with a comment of form ``//P[flags][pythonname] doc string''. The (whole) field declaration and the comment should be in the same line. Currently, the flag can be R to denote a read-only attribute. pythonname can be either ``>newname'' or ``+newname''; the former renames the property and the latter adds an alias. Renaming should only be used if the name used in C++ is inappropriate and cannot be changed in C++ for some reason.
+
+Pointers to types derived from TOrange are declared using macro PROPERTY(type, name, doc-string) or PROPERTY_RO(type, name, doc-string) for read-only fields. This defines a private field _<name> and public methods set_<name> and <name>() for accessing the value from C++. Pyprops will prepare the interface to Python.
+
+The class can define methods to fill the slots in PyTypeObject and related structures. The method needs to be defined as a static class member with the appropriate signature (it is allowable to use, e.g. PyOrange or PyFloatVariable instead of PyObject) and named the same as the corresponding special method in Python. Slots which can be defined in this way are __dealloc__, __repr__, __hash__, __call__, __str__, __getattr__, __setattr__, __traverse__, __clear__, __richcmp__, __iter__, __iternext__, __init__, __new__ and __free__, and all methods from the numeric, sequence and mapping interface.
+
+The method definition can be followed by a PYDOC macro (in the same line) containing a documentation string. This is only used for __new__ and __call__ slot, however. If the documentation string includes argument names, they are stored (details are given below, in description of how methods are exported).
+
+To export non-special methods, they need to be defined as static members with the appropriate signature and followed by PYARGS(meth-flags, doc-string). Meth-flags may be METH_NOARGS, METH_O, METH_VARARGS, METH_KEYWORDS or METH_BOTH (the combination of the latter two; defined in Orange for convenience). The latter form should be preferred.
+
+Doc-string should be put under quotes and it should preferably start with something like ``(arg1, arg2[, arg3])''. pyprops looks for parentheses and if it finds them in the beginning of the doc string, it will extract all identifiers and put them in a constant classname_methodname_keywords of type static char *[], with a NULL at the end. If the method accepts named arguments, this constant can be passed to PyArg_ParseTupleAndKeywords. The names of arguments for __new__ are put into classname_keywords.
+
+
+TBD: components, constants
+
+TBD: getters, setters
+
+new and delete
+--------------
+
+Any Orange objects which will be referenced from Python (e.g. seen as PyObjects) need to be allocated using the new operator. TOrange defines a new operator which accepts a "positional" argument containing a pointer to PyTypeObject. New will allocate the memory for an instance of Py-class and initialize it, but return a pointer to TOrange (or a derived class) as expected. More explanation is given below.
+
+New allocates the object using PyObject_GC_New, but does not enable GC tracking! This is done when the newly constructed object is returned to Python through PyObject_FromNewOrange or when it is wrapped into a P-class for the first time. (It is recommended that __new__ constructors are always written so that they return TOrange *. pyprops will then take care of casting.)
+
+The reason for not enabling tracking in the new operator is that (1) the object is not fully constructed yet, so it is essentially illegal to track it and (2) an exception may occur when computing the arguments for the constructor. In this case, the program would attempt to deallocate the object, and dealloc call the virtual destructor before the object has a points to vtable.
+
+If dealloc discovers that the object is not GC tracked yet, it will not clear any references. So, for as long as the object is not returned to Python or wrapped into a P-class, proper disposition of the object, including any possible references needs to be done manually (by whomever left the object untracked).
+
+Never call delete! Use Py_DECREF or T_DECREF instead and the object will get deleted when it needs to be.
+
+References
+----------
+
+TOrange defines __traverse__ and __clear__ methods that call virtual methods traverse_references and clear_references. These two can be overloaded if needed. The provided methods take care of fields declared by PROPERTY or PROPERTY_OR.
+
+
+Python wrappers (Py-classes)
+++++++++++++++++++++++++++++
+
+For every T-class that is exported to Python there is a related Py-class defined by pyprops (exception to this is PyOrange, for practical reasons). For instance, for TRandomGenerator, we have PyRandomGenerator. The class is ``derived'' (in a Cish fashion, by extending the structure) from PyObject and contains a PyObject_HEAD and a field of the T-class type named orange. For instance, PyRandomGenerator looks like this:
+    class PyRandomGenerator {
+        PyObject_HEAD;
+        TRandomGenerator orange;
+    };
+
+T-classes do not have a hiearchy as to avoid any problems with possible compilers tendencies to add any run-time type information at inappropriate places. This also conforms to how Python classes are organized: the structure is held in PyTypeObject's tp_base fields.
+	
+When a T-object is allocated using the overloaded new operator, the operator actually allocates the space for Py-object, initializes it and enables garbage collection tracking. The pointer it returns points to ``orange'' so the caller does not need to know that the whole PyObject was constructed behind the scenes.
+
+Since ``orange'' has a fixed offset within the structure, it is easy to get the offsets of orange's fields (which are needed to fill the PyMemberDef structures) and to cast from one class to another.
+
+Function PyObject_AsOrange(x) converts a pointer to an instance of T-class to a pointer to its corresponding Py-class instance. 
+
+Note that such casting is unnecessary for PyObject * "self", since pyprops can provide wrappers for methods and special methods that accept T-class instead of Py-class. For instance, the Domain's method __len__ is not defined as __len__(PyObject *self) or __len__(PyDomain *self) but rather as __len__(TDomain *me). pyprops handles the conversion.
+
+Similarly, __new__ returns TDomain * instead of PyObject *; pyprops takes care of wrapping.
+
+All such wrappers also enclose the call into a try-catch block which handles exceptions of type PyException. All code should use exceptions of this type.
+
+However, all other methods that are supposed to return PyObject * need to return PyObject *. To convert from a T-class to Py-class use PyObject_FromOrange, which also increases the reference count. A similar function PyObject_FromNewOrange should be used for new objects: it does not increase the reference count and it also enables garbage collection tracking. PyObject_FromNewOrange may also be used on existing objects when the reference count should not be increased (eg. the function owns a reference and passes it to the caller); gc tracking will not be "reenabled".
+
+
+Reference counting
+++++++++++++++++++
+
+Any method or function which returns a PyObject * also passes a reference to the caller.
+
+Functions that return pointers to T-classes *do not* pass references, *except for* functions that construct new objects or that *sometimes* construct new objects. For instance, TVariable::make finds an existing variable that matches the description or creates a new one; in either case, it will also give a reference.
+
+The reference count is increased when the object is stored (e.g. in void TClassifier::set_classVar(TVariable *)), but not when it is retrieved (TClassifier *TClassifier::classVar()). Reference counts to stored references are decreased in the destructor.
+
+Constructors need to be careful with references. They should not use initializers lists except when the want to steal references. If exception is cast during initialization, all initialized fields should be set to NULL to decrease the reference counts.
+
+Constructors should be especially careful with objects they construct themselves. Any new objects need to be either assigned through set_ or cast into PyObject through PyObject_FromOrange; this enables gc_tracking. __new__ can return a TOrange * and pyprops will wrap it.
+
+T_INCREF and T_DECREF are equivalent to Py_XINCREF and Py_XDECREF except that they get a T-class instead of a PyObject *.
+
+Assigning new objects directly to fields will crash Python. When new objects need to be assigned, this can be done like in the following code from TDiscreteVariable's constructor:
+
+    set_values(new (&PyStringList_Type)TStringList());
+	T_DECREF(_values);
+
+
+
+
+Justification of the model
+==========================
+
+This part is here so I don't try the same impossible solutions the next time I decide to reorganize the scheme. (I have an impression I went through this some ten years ago, when I was building the previous scheme.)
+
+
+
+In design of our model, we tried to follow the following objectives:
+
+1. Orange's core should consist of ordinary C++ classes. We don't mind including Python stuff for as long as the core of Orange can function as if there is no Python's glue around them.
+
+2. Orange's core needs garbage collection. We want to use Python's collector, including the cyclic garbage collection, but don't want to have to manually deal with reference counting and similar stuff in the C++ core.
+
+3. We want to utilize the standard Python extension API, for instance, we'd like to use tp_members at least for int's and similar. We also want to bring Orange up-to-date with features like named arguments, documentation string (including sphinx/rst taking documentation from C code).
+
+4. We don't want (too much) hacking, large memory footprints etc.
+
+
+As a consequence, Orange's classes (e.g. TOrange) cannot be derived from PyObject. Visual C (and probably also some other compilers) puts vtable in front of TOrange, before PyObject. While static casting correctly converts TOrange into PyObject, Python unfortunatelly uses the memory before the object for its flags and counts, so it overwrited the vtable pointer (or vice versa). This could be avoided by deriving TOrange from a dummy class of appropriate length and a PyObject; this increases memory footprint, it's ugly and we haven't been able to make it work. Thus, TOrange is not derived from PyObject.
+
+For automatic counting of object references, we used to have a wrapper class, e.g. PVariable. The wrapper was derived from PyObject and contained a pointer to TOrange. As PyObjects are typically allocated in the heap, we often had two instances on the heap, TOrange and the wrapper, which increased the memory usage. More importantly, this prohibited us from using tp_members and similar since TOrange's data is not at a fixed offset from PyObject. Thus, the wrapper cannot be derived from PyObject.
+
+This would result in three classes, T-, Py- and P-. We used all the three together, T, P and Py, for two weeks. After porting a few classes (Orange, vectors, Variable and its subclasses, and Domain) all Orange proved to be one huge memory leak. It was impossible to remember which conversions increase (decrease) reference counters and which do not. We thus decided to end the nightmare by getting rid of the beloved P- wrappers, possibly introducing a number of new memory leaks and reference leaks. These will, however be manageable while having three classes was not.
+
+
+
+ADD: which header to include where
+ADD: PyOr_<classname>_Type
+ADD: vectors
+ADD: exception raising and handling
+
+Technical notes
+===============
+
+Traversing and clearing references
+
+What is in px, what in ppp and why.

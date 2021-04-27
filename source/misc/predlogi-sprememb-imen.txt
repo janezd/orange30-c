@@ -1,0 +1,13 @@
+Orange.classification.ClassifierList -> Orange.classification.Classifiers
+Orange.classification.knn.kNNLearner -> Orange.classification.knn.KNNLearner
+Orange.classification.knn.kNNClassifier -> Orange.classification.knn.KNNClassifier
+Orange.clustering.ExampleCluster?!
+Orange.clustering.hierarchical.HierarchicalClusterList -> Orange.clustering.hierarchical.ClusterList
+Orange.clustering.hierarchical.HierarchicalClustering -> Orange.clustering.hierarchical.Clustering
+Orange.clustering.hierarchical.HierarchicalCluster -> Orange.clustering.hierarchical.Cluster
+Orange.data.io: v tem modulu se ne uvaza nic takega, kar ne bi moglo ostati kar v Orange.core...
+Orange.discretization nekam malo uvaza
+Orange.featureConstruction je isto kot Orange.feature.construction!
+Orange.preprocess vsebuje vse zivo, kar je tudi drugje, poleg tega pa potrebuje nekaj preimenovanja
+Orange.statistics.estimate potrebuje preimenovanje
+Orange.statistics.evd potrebuje Martina

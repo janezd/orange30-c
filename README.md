@@ -1,0 +1,1 @@
+This was supposed to be Orange 3 -- a complete rewrite of Orange 2 in C++, with base classes not in numpy. It was abandoned in favour of an implementation in Python.

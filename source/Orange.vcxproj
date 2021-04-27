@@ -1,0 +1,349 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{93B854DA-EC3F-4314-B801-58411F9713FD}</ProjectGuid>
+    <RootNamespace>Orange</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="orange.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="orange.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">orange_d</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">orange</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\obj/Release_debug/Orange.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>ORANGE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>common.hpp</PrecompiledHeaderFile>
+      <DebugInformationFormat>OldStyle</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\obj\Debug/Orange.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;ORANGE_EXPORTS;NO_NUMPY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>common.hpp</PrecompiledHeaderFile>
+      <BrowseInformation>
+      </BrowseInformation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="associationrule.cpp" />
+    <ClCompile Include="associationrulesinducer.cpp" />
+    <ClCompile Include="assocrulesinducer-sparse.cpp" />
+    <ClCompile Include="bayes.cpp" />
+    <ClCompile Include="blas\dcopy.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="bytestream.cpp" />
+    <ClCompile Include="calibrate.cpp" />
+    <ClCompile Include="constantclassifier.cpp" />
+    <ClCompile Include="costmatrix.cpp" />
+    <ClCompile Include="crc32.cpp" />
+    <ClCompile Include="discretization.cpp" />
+    <ClCompile Include="domaincontinuizer.cpp" />
+    <ClCompile Include="earth.cpp" />
+    <ClCompile Include="examplesdistance.cpp" />
+    <ClCompile Include="filter.cpp" />
+    <ClCompile Include="findnearest.cpp" />
+    <ClCompile Include="hierarchicalclustering.cpp" />
+    <ClCompile Include="imputation.cpp" />
+    <ClCompile Include="knn.cpp" />
+    <ClCompile Include="knn_projected.cpp" />
+    <ClCompile Include="liblinear\linear.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="liblinear\tron.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="liblinear_interface.cpp" />
+    <ClCompile Include="libsvm\svm.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libsvm_interface.cpp" />
+    <ClCompile Include="linpack\dqrdc2.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="linpack\dqrsl.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="linpack\dtrsl.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="linpack\linpack.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="logreg.cpp" />
+    <ClCompile Include="logregfitter.cpp" />
+    <ClCompile Include="logreg_funcs.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="lsq.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="majoritylearner.cpp" />
+    <ClCompile Include="makerandomindices.cpp" />
+    <ClCompile Include="mapintvalue.cpp" />
+    <ClCompile Include="metachain.cpp" />
+    <ClCompile Include="preprocessors.cpp" />
+    <ClCompile Include="probabilityestimator.cpp" />
+    <ClCompile Include="progress.cpp" />
+    <ClCompile Include="randomclassifier.cpp" />
+    <ClCompile Include="scorefeature.cpp">
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </AssemblerListingLocation>
+    </ClCompile>
+    <ClCompile Include="stat.cpp" />
+    <ClCompile Include="symmatrix.cpp" />
+    <ClCompile Include="blas\daxpy.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="blas\ddot.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="blas\dnrm2.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="blas\dscal.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="basicattrstat.cpp" />
+    <ClCompile Include="basketfeeder.cpp" />
+    <ClCompile Include="classifier.cpp" />
+    <ClCompile Include="classifierfromvar.cpp" />
+    <ClCompile Include="contdistribution.cpp" />
+    <ClCompile Include="contingency.cpp" />
+    <ClCompile Include="contingencyattrattr.cpp" />
+    <ClCompile Include="contingencyattrclass.cpp" />
+    <ClCompile Include="contingencyclass.cpp" />
+    <ClCompile Include="contingencyclassattr.cpp" />
+    <ClCompile Include="continuousvariable.cpp" />
+    <ClCompile Include="converts.cpp" />
+    <ClCompile Include="discdistribution.cpp" />
+    <ClCompile Include="discretevariable.cpp" />
+    <ClCompile Include="distribution.cpp" />
+    <ClCompile Include="domain.cpp" />
+    <ClCompile Include="domainbasicattrstat.cpp" />
+    <ClCompile Include="domaincontingency.cpp" />
+    <ClCompile Include="domaindistributions.cpp" />
+    <ClCompile Include="errors.cpp" />
+    <ClCompile Include="example.cpp" />
+    <ClCompile Include="exampletable.cpp" />
+    <ClCompile Include="exampletablereader.cpp" />
+    <ClCompile Include="gaussiandistribution.cpp" />
+    <ClCompile Include="learner.cpp" />
+    <ClCompile Include="module.cpp" />
+    <ClCompile Include="orange.cpp" />
+    <ClCompile Include="orattributedvector.cpp" />
+    <ClCompile Include="orvector.cpp" />
+    <ClCompile Include="progarguments.cpp" />
+    <ClCompile Include="pyvalue.cpp" />
+    <ClCompile Include="randomgenerator.cpp" />
+    <ClCompile Include="stringvariable.cpp" />
+    <ClCompile Include="transformvalue.cpp" />
+    <ClCompile Include="valuelist.cpp" />
+    <ClCompile Include="variable.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="associationrule.hpp" />
+    <ClInclude Include="associationrulesinducer.hpp" />
+    <ClInclude Include="assocrulesinducer-sparse.hpp" />
+    <ClInclude Include="bayes.hpp" />
+    <ClInclude Include="bytestream.hpp" />
+    <ClInclude Include="calibrate.hpp" />
+    <ClInclude Include="cMersenneTwister.h" />
+    <ClInclude Include="constantclassifier.hpp" />
+    <ClInclude Include="costmatrix.hpp" />
+    <ClInclude Include="crc32.hpp" />
+    <ClInclude Include="discretization.hpp" />
+    <ClInclude Include="domaincontinuizer.hpp" />
+    <ClInclude Include="earth.hpp" />
+    <ClInclude Include="exampleiterator.hpp" />
+    <ClInclude Include="examplesdistance.hpp" />
+    <ClInclude Include="exampletable-inlines.hpp" />
+    <ClInclude Include="filter.hpp" />
+    <ClInclude Include="findnearest.hpp" />
+    <ClInclude Include="hierarchicalclustering.hpp" />
+    <ClInclude Include="imputation.hpp" />
+    <ClInclude Include="knn.hpp" />
+    <ClInclude Include="knn_projected.hpp" />
+    <ClInclude Include="liblinear\linear.h" />
+    <ClInclude Include="liblinear\tron.h" />
+    <ClInclude Include="liblinear_interface.hpp" />
+    <ClInclude Include="libsvm\svm.h" />
+    <ClInclude Include="libsvm_interface.hpp" />
+    <ClInclude Include="linpack\linpack.h" />
+    <ClInclude Include="logreg.hpp" />
+    <ClInclude Include="logregfitter.hpp" />
+    <ClInclude Include="logreg_funcs.hpp" />
+    <ClInclude Include="lsq.h" />
+    <ClInclude Include="majoritylearner.hpp" />
+    <ClInclude Include="makerandomindices.hpp" />
+    <ClInclude Include="mapintvalue.hpp" />
+    <ClInclude Include="metachain-private.hpp" />
+    <ClInclude Include="metachain.hpp" />
+    <ClInclude Include="preprocessors.hpp" />
+    <ClInclude Include="probabilityestimator.hpp" />
+    <ClInclude Include="progress.hpp" />
+    <ClInclude Include="randomclassifier.hpp" />
+    <ClInclude Include="scorefeature.hpp" />
+    <ClInclude Include="stat.hpp" />
+    <ClInclude Include="stladdon.hpp" />
+    <ClInclude Include="symmatrix.hpp" />
+    <ClInclude Include="blas\blas.h" />
+    <ClInclude Include="blas\blasp.h" />
+    <ClInclude Include="basicattrstat.hpp" />
+    <ClInclude Include="basketfeeder.hpp" />
+    <ClInclude Include="classifier.hpp" />
+    <ClInclude Include="classifierfromvar.hpp" />
+    <ClCompile Include="common.hpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeaderFile>
+    </ClCompile>
+    <ClInclude Include="contdistribution.hpp" />
+    <ClInclude Include="contingency.hpp" />
+    <ClInclude Include="contingencyattrattr.hpp" />
+    <ClInclude Include="contingencyattrclass.hpp" />
+    <ClInclude Include="contingencyclass.hpp" />
+    <ClInclude Include="contingencyclassattr.hpp" />
+    <ClInclude Include="continuousvariable.hpp" />
+    <CustomBuildStep Include="converts.hpp" />
+    <ClInclude Include="discdistribution.hpp" />
+    <ClInclude Include="discretevariable.hpp" />
+    <ClInclude Include="distribution.hpp" />
+    <CustomBuildStep Include="domain.hpp" />
+    <ClInclude Include="domainbasicattrstat.hpp" />
+    <ClInclude Include="domaincontingency.hpp" />
+    <ClInclude Include="domaindistributions.hpp" />
+    <CustomBuildStep Include="errors.hpp" />
+    <ClInclude Include="example.hpp" />
+    <ClInclude Include="exampletable.hpp" />
+    <ClInclude Include="exampletablereader.hpp" />
+    <ClInclude Include="gaussiandistribution.hpp" />
+    <ClInclude Include="learner.hpp" />
+    <ClInclude Include="module.hpp" />
+    <CustomBuildStep Include="orange.hpp" />
+    <ClInclude Include="orattributedvector.hpp" />
+    <CustomBuildStep Include="orvector.hpp" />
+    <ClInclude Include="progarguments.hpp" />
+    <ClInclude Include="pyvalue.hpp" />
+    <ClInclude Include="pyxtract_macros.hpp" />
+    <ClInclude Include="randomgenerator.hpp" />
+    <ClInclude Include="simplerandomgenerator.hpp" />
+    <ClInclude Include="stringvariable.hpp" />
+    <ClInclude Include="transformvalue.hpp" />
+    <ClInclude Include="valuelist.hpp" />
+    <CustomBuildStep Include="values.hpp" />
+    <ClInclude Include="variable.hpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

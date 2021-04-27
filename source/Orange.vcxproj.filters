@@ -1,0 +1,543 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{63c68e62-550b-411a-aa87-7c9aff84547e}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat;hpp</Extensions>
+    </Filter>
+    <Filter Include="Source Files\blas">
+      <UniqueIdentifier>{1d02d68b-7781-48b2-9e07-e8e77d21ab38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\common">
+      <UniqueIdentifier>{362a2137-913f-4dc4-91bf-f5989b64ae6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\linpack">
+      <UniqueIdentifier>{4404ba5d-6e8a-4020-9f06-5377222e4c44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\liblinear">
+      <UniqueIdentifier>{fa731d68-8cbd-42a4-b114-bdc6c936e2aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libsvm">
+      <UniqueIdentifier>{73a640b3-602e-4a80-a323-9ddd35dcc689}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="bayes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="calibrate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="constantclassifier.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="discretization.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="domaincontinuizer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="examplesdistance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="filter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="findnearest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="knn.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="majoritylearner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="makerandomindices.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mapintvalue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="preprocessors.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="probabilityestimator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="randomclassifier.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="scorefeature.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="symmatrix.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="blas\daxpy.c">
+      <Filter>Source Files\blas</Filter>
+    </ClCompile>
+    <ClCompile Include="blas\ddot.c">
+      <Filter>Source Files\blas</Filter>
+    </ClCompile>
+    <ClCompile Include="blas\dnrm2.c">
+      <Filter>Source Files\blas</Filter>
+    </ClCompile>
+    <ClCompile Include="blas\dscal.c">
+      <Filter>Source Files\blas</Filter>
+    </ClCompile>
+    <ClCompile Include="basicattrstat.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="basketfeeder.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="classifier.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="classifierfromvar.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="contdistribution.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="contingency.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="contingencyattrattr.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="contingencyattrclass.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="contingencyclass.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="contingencyclassattr.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="continuousvariable.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="converts.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="discdistribution.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="discretevariable.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="distribution.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="domain.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="domainbasicattrstat.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="domaincontingency.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="domaindistributions.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="errors.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="example.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="exampletable.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="exampletablereader.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="gaussiandistribution.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="learner.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="module.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="orange.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="orattributedvector.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="orvector.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="progarguments.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="pyvalue.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="randomgenerator.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="stringvariable.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="transformvalue.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="valuelist.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="variable.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="metachain.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="associationrule.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="associationrulesinducer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="assocrulesinducer-sparse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="costmatrix.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="logregfitter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lsq.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="logreg_funcs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="logreg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="imputation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bytestream.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="crc32.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="stat.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="hierarchicalclustering.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="progress.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="knn_projected.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="earth.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="linpack\dqrdc2.c">
+      <Filter>Source Files\linpack</Filter>
+    </ClCompile>
+    <ClCompile Include="linpack\dqrsl.c">
+      <Filter>Source Files\linpack</Filter>
+    </ClCompile>
+    <ClCompile Include="linpack\dtrsl.c">
+      <Filter>Source Files\linpack</Filter>
+    </ClCompile>
+    <ClCompile Include="linpack\linpack.c">
+      <Filter>Source Files\linpack</Filter>
+    </ClCompile>
+    <ClCompile Include="blas\dcopy.c">
+      <Filter>Source Files\blas</Filter>
+    </ClCompile>
+    <ClCompile Include="liblinear_interface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="liblinear\linear.cpp">
+      <Filter>Source Files\liblinear</Filter>
+    </ClCompile>
+    <ClCompile Include="liblinear\tron.cpp">
+      <Filter>Source Files\liblinear</Filter>
+    </ClCompile>
+    <ClCompile Include="libsvm\svm.cpp">
+      <Filter>Source Files\libsvm</Filter>
+    </ClCompile>
+    <ClCompile Include="libsvm_interface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="bayes.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="calibrate.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="constantclassifier.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="discretization.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="domaincontinuizer.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="examplesdistance.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filter.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="findnearest.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="knn.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="majoritylearner.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="makerandomindices.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mapintvalue.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="probabilityestimator.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="randomclassifier.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="scorefeature.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="symmatrix.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blas\blas.h">
+      <Filter>Source Files\blas</Filter>
+    </ClInclude>
+    <ClInclude Include="blas\blasp.h">
+      <Filter>Source Files\blas</Filter>
+    </ClInclude>
+    <ClInclude Include="basicattrstat.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="basketfeeder.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="classifier.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="classifierfromvar.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="contdistribution.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="contingency.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="contingencyattrattr.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="contingencyattrclass.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="contingencyclass.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="contingencyclassattr.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="continuousvariable.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="discdistribution.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="discretevariable.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="distribution.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="domainbasicattrstat.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="domaincontingency.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="domaindistributions.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="example.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="exampletable.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="exampletablereader.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="gaussiandistribution.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="learner.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="module.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="orattributedvector.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="progarguments.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="pyvalue.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="pyxtract_macros.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="randomgenerator.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="simplerandomgenerator.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="stringvariable.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="transformvalue.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="valuelist.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="variable.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="preprocessors.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="exampleiterator.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="exampletable-inlines.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="metachain.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="metachain-private.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="associationrule.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="associationrulesinducer.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="assocrulesinducer-sparse.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="costmatrix.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="logregfitter.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="logreg_funcs.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="logreg.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="imputation.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bytestream.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="crc32.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="stat.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="cMersenneTwister.h">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="stladdon.hpp">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="hierarchicalclustering.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="progress.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="knn_projected.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="earth.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="linpack\linpack.h">
+      <Filter>Source Files\linpack</Filter>
+    </ClInclude>
+    <ClInclude Include="liblinear_interface.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="liblinear\linear.h">
+      <Filter>Source Files\liblinear</Filter>
+    </ClInclude>
+    <ClInclude Include="liblinear\tron.h">
+      <Filter>Source Files\liblinear</Filter>
+    </ClInclude>
+    <ClInclude Include="libsvm\svm.h">
+      <Filter>Source Files\libsvm</Filter>
+    </ClInclude>
+    <ClInclude Include="libsvm_interface.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lsq.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuildStep Include="converts.hpp">
+      <Filter>Source Files\common</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="domain.hpp">
+      <Filter>Source Files\common</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="errors.hpp">
+      <Filter>Source Files\common</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="orange.hpp">
+      <Filter>Source Files\common</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="orvector.hpp">
+      <Filter>Source Files\common</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="values.hpp">
+      <Filter>Source Files\common</Filter>
+    </CustomBuildStep>
+  </ItemGroup>
+</Project>
